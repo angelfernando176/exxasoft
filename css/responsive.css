@@ -1,0 +1,112 @@
+/* =========================================================
+   ExxaSoft — Adaptación a tabletas y móviles
+   ========================================================= */
+
+/* ---------- Pantallas medianas ---------- */
+@media (max-width: 1080px) {
+  .comb { --w: 128px; }
+  .hero-grid { gap: 32px; }
+  .product { grid-template-columns: 1fr; }
+  .product-badge { width: 84px; height: 97px; font-size: 1.3rem; }
+  .product-uben .product-badge { font-size: 2rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .social { grid-column: 1 / -1; }
+}
+
+/* ---------- Menú móvil y tabletas ---------- */
+@media (max-width: 900px) {
+  :root { --header-h: 64px; }
+
+  .nav-toggle { display: flex; }
+
+  .nav-panel {
+    position: fixed;
+    top: var(--header-h);
+    left: 0; right: 0;
+    height: calc(100vh - var(--header-h));
+    height: calc(100dvh - var(--header-h));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 20px 24px 32px;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    overflow-y: auto;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity .2s, transform .2s, visibility .2s;
+  }
+
+  .nav-open .nav-panel {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .menu { flex-direction: column; gap: 2px; }
+  .menu-link {
+    width: 100%;
+    justify-content: space-between;
+    padding: 14px 8px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+  }
+
+  .submenu {
+    position: static;
+    box-shadow: none;
+    border: 0;
+    padding: 4px 0 8px 12px;
+    background: transparent;
+  }
+  .submenu a { padding: 10px 8px; }
+
+  .btn-account { width: 100%; padding: 14px; }
+
+  /* Hero apilado */
+  .hero { min-height: 0; padding-block: 40px 48px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero h1 { max-width: 18ch; }
+
+  .about-grid,
+  .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+  .product-grid { grid-template-columns: 1fr; gap: 20px; }
+  .product { grid-template-columns: 84px 1fr; gap: 18px; }
+
+  .section { padding-block: 56px; }
+}
+
+/* ---------- Móviles ---------- */
+@media (max-width: 640px) {
+  body { font-size: 1rem; }
+  .container { padding-inline: 18px; }
+
+  .brand { font-size: 1.2rem; }
+  .brand img { width: 34px; height: 34px; }
+
+  .lead { font-size: 1.08rem; }
+  .hero-actions .btn { flex: 1 1 100%; }
+
+  /* El panal conserva su forma y se escala al ancho de la pantalla */
+  .comb { --w: min(calc((100vw - 36px - 16px) / 3), 150px); --g: 6px; }
+  .cell button, .cell span { font-size: .78rem; padding: 0 10px; }
+  .cell-core span { font-size: .85rem; }
+
+  .product { padding: 22px; grid-template-columns: 1fr; }
+  .product-badge { width: 64px; height: 74px; font-size: 1.05rem; }
+  .product-uben .product-badge { font-size: 1.6rem; }
+
+  .contact-form { grid-template-columns: 1fr; padding: 22px; }
+  .contact-form .btn { justify-self: stretch; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; padding-block: 32px; }
+  .footer-links { flex-direction: column; gap: 12px; }
+
+  .modal-box { padding: 32px 20px 24px; }
+}

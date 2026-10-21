@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExxaSoft | Desarrollo de software a medida</title>
+  <meta name="description" content="ExxaSoft desarrolla software a medida bajo la filosofía What You Need, What You Wish: aplicaciones web, móviles y sistemas modulares, estables y escalables.">
+  <meta name="theme-color" content="#14263B">
+  <meta property="og:title" content="ExxaSoft | Desarrollo de software a medida">
+  <meta property="og:description" content="Transformamos ideas y necesidades en herramientas tecnológicas útiles, estables y accesibles.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/logo.svg">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== Encabezado ===== -->
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="index.html" aria-label="ExxaSoft, ir al inicio">
+        <img src="img/logo.svg" alt="" width="40" height="40">
+        <span>Exxa<strong>Soft</strong></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-panel" id="menu">
+        <ul class="menu">
+          <li class="has-sub">
+            <button class="menu-link sub-toggle" type="button" aria-expanded="false" aria-controls="sub-exxasoft">ExxaSoft</button>
+            <ul class="submenu" id="sub-exxasoft">
+              <li><a href="#nosotros" data-tab="mision">Misión</a></li>
+              <li><a href="#nosotros" data-tab="vision">Visión</a></li>
+              <li><a href="#principios">Principios</a></li>
+            </ul>
+          </li>
+          <li><a class="menu-link" href="#servicios">Servicios</a></li>
+          <li class="has-sub">
+            <button class="menu-link sub-toggle" type="button" aria-expanded="false" aria-controls="sub-productos">Productos</button>
+            <ul class="submenu" id="sub-productos">
+              <li><a href="#producto-eco">Eco</a></li>
+              <li><a href="#producto-ubenplay">ÜBENPLAY</a></li>
+            </ul>
+          </li>
+          <li><a class="menu-link" href="#contacto">Contacto</a></li>
+        </ul>
+        <button class="btn btn-account" type="button" data-open="dlg-login">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          Mi cuenta
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ===== Inicio + Servicios ===== -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="motto">What You Need, What You Wish</p>
+          <h1 id="hero-title">Software a medida, construido celda por celda.</h1>
+          <p class="lead">Escuchamos lo que necesitas y lo que deseas alcanzar, y lo convertimos en sistemas modulares, estables y listos para crecer contigo.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contacto">Cuéntanos tu proyecto</a>
+            <a class="btn btn-ghost" href="#productos">Ver productos</a>
+          </div>
+        </div>
+
+        <div class="services" id="servicios" aria-labelledby="services-title">
+          <h2 class="sr-only" id="services-title">Servicios</h2>
+          <ul class="comb" role="list">
+            <li class="cell cell-core pos-c">
+              <span>Tu proyecto</span>
+            </li>
+            <li class="cell pos-w">
+              <button type="button" data-service="0">Software a medida</button>
+            </li>
+            <li class="cell pos-e">
+              <button type="button" data-service="1">Aplicaciones móviles</button>
+            </li>
+            <li class="cell pos-nw">
+              <button type="button" data-service="2">Desarrollo web</button>
+            </li>
+            <li class="cell pos-ne">
+              <button type="button" data-service="3">Análisis de requisitos</button>
+            </li>
+            <li class="cell pos-sw">
+              <button type="button" data-service="4">Datos e información</button>
+            </li>
+            <li class="cell pos-se">
+              <button type="button" data-service="5">Integración y soporte</button>
+            </li>
+          </ul>
+          <div class="service-detail" aria-live="polite">
+            <h3 id="service-name">Elige un servicio</h3>
+            <p id="service-text">Cada celda es una de las piezas con las que armamos tu solución.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Productos ===== -->
+    <section class="section products" id="productos" aria-labelledby="products-title">
+      <div class="container">
+        <header class="section-head">
+          <h2 id="products-title">Nuestros productos</h2>
+          <p>Soluciones propias que ya están ayudando a personas y negocios.</p>
+        </header>
+
+        <div class="product-grid">
+          <article class="product product-eco" id="producto-eco">
+            <div class="product-badge" aria-hidden="true">Eco</div>
+            <div class="product-body">
+              <h3>Eco</h3>
+              <p class="product-tag">Encuentra lo que necesitas, cerca de ti</p>
+              <p>Conecta a las personas con negocios, productos y servicios cercanos, con búsqueda en mapa, menús, fotos, videos y valoraciones.</p>
+              <ul class="chips" role="list">
+                <li>Búsqueda por cercanía</li>
+                <li>Mapa interactivo</li>
+                <li>Comercio local</li>
+              </ul>
+              <button class="btn btn-small" type="button" data-open="dlg-eco">Ver detalles de Eco</button>
+            </div>
+          </article>
+
+          <article class="product product-uben" id="producto-ubenplay">
+            <div class="product-badge" aria-hidden="true">Ü</div>
+            <div class="product-body">
+              <h3>ÜBENPLAY</h3>
+              <p class="product-tag">Aprende alemán jugando</p>
+              <p>10 palabras nuevas por lección, 11 juegos distintos y niveles de A1 a B2 organizados por temas de la vida real.</p>
+              <ul class="chips" role="list">
+                <li>Android e iOS</li>
+                <li>Niveles A1–B2</li>
+                <li>Panel para profesores</li>
+              </ul>
+              <button class="btn btn-small" type="button" data-open="dlg-uben">Ver detalles de ÜBENPLAY</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Nosotros ===== -->
+    <section class="section about" id="nosotros" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-main">
+          <h2 id="about-title">Quiénes somos</h2>
+          <div class="tabs" role="tablist" aria-label="Misión y visión">
+            <button class="tab" role="tab" id="tab-mision" aria-controls="panel-mision" aria-selected="true">Misión</button>
+            <button class="tab" role="tab" id="tab-vision" aria-controls="panel-vision" aria-selected="false" tabindex="-1">Visión</button>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="panel-mision" aria-labelledby="tab-mision" tabindex="0">
+            <p>Desarrollar soluciones de software a medida bajo la filosofía <em>What You Need, What You Wish</em> (lo que necesitas, lo que deseas), transformando ideas y necesidades en herramientas tecnológicas útiles, estables y accesibles.</p>
+            <p>A través de nuestra experiencia en levantamiento de requerimientos y gestión de la información, y utilizando tecnologías confiables, diseñamos soluciones eficientes, adaptables y sostenibles que simplifican procesos y contribuyen al bienestar de las personas y al crecimiento de las organizaciones.</p>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="panel-vision" aria-labelledby="tab-vision" tabindex="0" hidden>
+            <p>Ser un referente en el desarrollo de software personalizado, reconocido por convertir necesidades y aspiraciones en soluciones tecnológicas confiables, innovadoras y accesibles.</p>
+            <p>Inspirados en la geometría y eficiencia de un panal, buscamos construir sistemas modulares, sólidos y escalables, donde cada componente se integre armoniosamente para conformar soluciones capaces de crecer y adaptarse a las necesidades de cada persona u organización.</p>
+          </div>
+        </div>
+
+        <div class="principles" id="principios">
+          <h3>Nuestros principios</h3>
+          <ul role="list">
+            <li>
+              <h4>A medida</h4>
+              <p>Cada solución nace de tus necesidades reales y de lo que deseas alcanzar. Nada genérico.</p>
+            </li>
+            <li>
+              <h4>Diseño modular y escalable</h4>
+              <p>Componentes organizados que se integran en una solución sólida y preparada para crecer.</p>
+            </li>
+            <li>
+              <h4>Estabilidad y utilidad</h4>
+              <p>Tecnologías confiables para software que resuelve problemas concretos.</p>
+            </li>
+            <li>
+              <h4>Tecnología accesible</h4>
+              <p>Costos razonables, adaptados a tu presupuesto y prioridades.</p>
+            </li>
+            <li>
+              <h4>Experiencia y conocimiento</h4>
+              <p>Levantamiento de requerimientos y análisis de procesos para convertir lo complejo en concreto.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contacto ===== -->
+    <section class="section contact" id="contacto" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <h2 id="contact-title">Hablemos de tu proyecto</h2>
+          <p>Cuéntanos qué necesitas. Te respondemos con una propuesta clara y sin compromiso.</p>
+          <ul class="contact-list" role="list">
+            <li>
+              <span class="hex-ico" aria-hidden="true">@</span>
+              <a href="mailto:fernando.escobar@exxasoft.com">fernando.escobar@exxasoft.com</a>
+            </li>
+            <li>
+              <span class="hex-ico" aria-hidden="true">☎</span>
+              <a href="tel:+593986550918">098 655 0918</a>
+            </li>
+            <li>
+              <span class="hex-ico" aria-hidden="true">W</span>
+              <a href="https://wa.me/593986550918" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+            </li>
+          </ul>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="field">
+            <label for="cf-name">Nombre</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Correo electrónico</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="cf-service">¿Qué necesitas?</label>
+            <select id="cf-service" name="service">
+              <option>Software a medida</option>
+              <option>Aplicación móvil</option>
+              <option>Sitio o sistema web</option>
+              <option>Análisis de requisitos</option>
+              <option>Información sobre Eco</option>
+              <option>Información sobre ÜBENPLAY</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="field field-full">
+            <label for="cf-msg">Mensaje</label>
+            <textarea id="cf-msg" name="message" rows="4" required></textarea>
+          </div>
+          <p class="form-status" id="cf-status" role="status"></p>
+          <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Pie de página ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand brand-light" href="index.html">
+          <img src="img/logo.svg" alt="" width="36" height="36">
+          <span>Exxa<strong>Soft</strong></span>
+        </a>
+        <p>Desarrollo de software a medida.<br>Quito, Ecuador.</p>
+      </div>
+      <nav class="footer-links" aria-label="Enlaces de ayuda y legales">
+        <a href="pages/faq.html">Preguntas frecuentes</a>
+        <a href="#contacto">Contáctanos</a>
+        <a href="pages/privacidad.html">Política de privacidad</a>
+        <a href="pages/terminos.html">Términos y condiciones</a>
+      </nav>
+      <ul class="social" role="list" aria-label="Redes sociales">
+        <li><a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="ExxaSoft en Facebook">f</a></li>
+        <li><a href="https://x.com/" target="_blank" rel="noopener" aria-label="ExxaSoft en X">X</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="ExxaSoft en LinkedIn">in</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p class="container">© ExxaSoft <span class="js-year">2026</span>. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ===== Ventanas modales ===== -->
+  <dialog class="modal" id="dlg-login" aria-labelledby="login-title">
+    <form class="modal-box login-form" id="login-form" method="dialog" novalidate>
+      <button class="modal-close" type="button" data-close aria-label="Cerrar">×</button>
+      <img src="img/logo.svg" alt="" width="48" height="48">
+      <h2 id="login-title">Ingresa a tu cuenta</h2>
+      <p class="modal-sub">Acceso para clientes con suscripción.</p>
+      <div class="field">
+        <label for="lg-email">Correo electrónico</label>
+        <input id="lg-email" type="email" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="lg-pass">Contraseña</label>
+        <div class="pass-wrap">
+          <input id="lg-pass" type="password" autocomplete="current-password" minlength="6" required>
+          <button class="pass-toggle" type="button" aria-label="Mostrar contraseña" aria-pressed="false">Ver</button>
+        </div>
+      </div>
+      <div class="login-row">
+        <label class="check"><input type="checkbox" id="lg-remember"> Recordarme</label>
+        <a href="mailto:fernando.escobar@exxasoft.com?subject=Recuperar%20contrase%C3%B1a">¿Olvidaste tu contraseña?</a>
+      </div>
+      <p class="form-status" id="lg-status" role="status"></p>
+      <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
+      <p class="modal-foot">¿Aún no tienes suscripción? <a href="#contacto" data-close>Contáctanos</a></p>
+    </form>
+  </dialog>
+
+  <dialog class="modal" id="dlg-eco" aria-labelledby="eco-title">
+    <div class="modal-box modal-product product-eco">
+      <button class="modal-close" type="button" data-close aria-label="Cerrar">×</button>
+      <h2 id="eco-title">Eco</h2>
+      <p class="product-tag">Encuentra lo que necesitas, cerca de ti</p>
+      <p>Eco es una aplicación diseñada para conectar a las personas con negocios, productos y servicios cercanos a su ubicación. Permite buscar por nombre de negocio, producto o habilidad, visualizar resultados en un mapa y consultar información como contactos, menús, imágenes, videos y valoraciones de los establecimientos.</p>
+      <p>Con Eco, los negocios pueden dar a conocer sus productos y servicios, mejorar su visibilidad y llegar a más clientes. Su objetivo es facilitar el encuentro entre quienes ofrecen y quienes buscan, impulsando el comercio local de forma sencilla y práctica.</p>
+      <a class="btn btn-primary" href="#contacto" data-close>Quiero saber más</a>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="dlg-uben" aria-labelledby="uben-title">
+    <div class="modal-box modal-product product-uben">
+      <button class="modal-close" type="button" data-close aria-label="Cerrar">×</button>
+      <h2 id="uben-title">ÜBENPLAY</h2>
+      <p class="product-tag">Aprende alemán jugando</p>
+      <p>ÜBENPLAY convierte el vocabulario alemán en un reto diario. Cada lección presenta 10 palabras nuevas, que practicas en 11 juegos distintos: unir parejas, cazar el artículo correcto (der, die, das), descubrir palabras en una sopa de letras, ordenar letras y oraciones, y muchos más.</p>
+      <p>El contenido está organizado por niveles, de A1 a B2, y por temáticas de la vida real como la casa, la comida, los viajes, el trabajo o la tecnología. Al aprobar un nivel se desbloquea el siguiente.</p>
+      <p>Cada acierto suma puntos, y responder rápido da puntos extra. Tu barra de poder te muestra cómo vas y tu mascota celebra contigo al terminar cada lección. Si repasas pronto, puedes multiplicar tu puntaje.</p>
+      <p>Disponible para Android e iOS. Los profesores pueden fijar metas diarias y seguir el avance de sus estudiantes.</p>
+      <p class="product-claim">ÜBENPLAY: practica, juega y habla alemán con confianza.</p>
+      <a class="btn btn-primary" href="#contacto" data-close>Quiero saber más</a>
+    </div>
+  </dialog>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/services.js" defer></script>
+  <script src="js/modals.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</body>
+</html>
