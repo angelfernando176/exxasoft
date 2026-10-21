@@ -12,7 +12,8 @@ exxasoft/
 │   └── responsive.css    Adaptación a tabletas y móviles
 ├── js/
 │   ├── main.js           Menú, submenús, menú móvil, año del pie
-│   ├── services.js       Panal interactivo de servicios
+│   ├── hexgrid.js        Malla hexagonal animada del fondo del inicio
+│   ├── services.js       Panal interactivo de servicios (onda, borde animado)
 │   ├── modals.js         Ventanas modales, pestañas Misión/Visión, ingreso "Mi cuenta"
 │   └── contact.js        Validación del formulario de contacto
 ├── pages/

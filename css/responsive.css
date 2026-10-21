@@ -95,8 +95,9 @@
 
   /* El panal conserva su forma y se escala al ancho de la pantalla */
   .comb { --w: min(calc((100vw - 36px - 16px) / 3), 150px); --g: 6px; }
-  .cell button, .cell span { font-size: .78rem; padding: 0 10px; }
-  .cell-core span { font-size: .85rem; }
+  .cell button, .cell .core { font-size: .72rem; padding: 0 8px; gap: 4px; }
+  .ico { width: 22px; height: 22px; }
+  .core-ico { width: 30px; height: 30px; }
 
   .product { padding: 22px; grid-template-columns: 1fr; }
   .product-badge { width: 64px; height: 74px; font-size: 1.05rem; }
