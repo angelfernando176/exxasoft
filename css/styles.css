@@ -14,9 +14,10 @@
   --teal: #0E6F7C;
   --eco: #2C8551;
   --eco-soft: #E3F2E8;
-  --uben: #127F78;
-  --uben-earth: #9A6B3A;
-  --uben-soft: #E0F2F0;
+  --uben: #34768A;
+  --uben-earth: #9F8F7C;
+  --uben-forest: #283713;
+  --uben-soft: #E4EFF0;
   --danger: #B3261E;
   --ok: #1E7A44;
 
@@ -521,6 +522,137 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
 }
 .product-uben .product-badge { font-size: 2.6rem; }
 
+/* Logo de Eco: en reposo se ve como el hexágono de siempre; al pasar el cursor
+   se expanden ondas de eco y al final queda dibujado el mapa del Ecuador */
+.eco-logo {
+  clip-path: none;
+  background: none;
+}
+.eco-logo svg { width: 100%; height: 100%; overflow: visible; }
+/* Tamaño en unidades del SVG para que escale con el logo en cualquier pantalla */
+.eco-logo text { font: 700 27px var(--font-head); }
+
+.eco-logo .eco-waves circle {
+  opacity: 0;
+  stroke-width: 2px;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.eco-logo .eco-map {
+  fill-opacity: 0;
+  stroke-opacity: 0;
+  transition: stroke-opacity .5s ease, fill-opacity .5s ease;
+}
+
+.product-eco:hover .eco-waves circle,
+.product-eco:focus-within .eco-waves circle { animation: eco-wave 1.5s cubic-bezier(.2, .6, .35, 1) both; }
+.product-eco:hover .eco-waves circle:nth-child(2),
+.product-eco:focus-within .eco-waves circle:nth-child(2) { animation-delay: .35s; }
+.product-eco:hover .eco-map,
+.product-eco:focus-within .eco-map {
+  transition: none;
+  animation: eco-map 2.2s ease-in-out .7s both;
+}
+
+@keyframes eco-wave {
+  0%   { transform: scale(.05); opacity: 0; stroke-width: 3px; }
+  8%   { opacity: .9; }
+  100% { transform: scale(1.1); opacity: 0; stroke-width: .5px; }
+}
+/* Los tres contornos tienen los mismos 72 puntos para que la onda se transforme en el mapa
+   (en navegadores sin animación de "d" el mapa simplemente aparece) */
+@keyframes eco-map {
+  0%   { d: path("M49.8 58.3L50.1 58.3L50.4 58.3L50.6 58.3L50.9 58.4L51.1 58.5L51.4 58.6L51.6 58.7L51.8 58.8L52.1 59L52.3 59.1L52.4 59.3L52.6 59.5L52.7 59.8L52.9 60L53 60.2L53.1 60.5L53.1 60.7L53.2 61L53.2 61.2L53.2 61.5L53.1 61.8L53.1 62L53 62.3L52.9 62.5L52.8 62.8L52.7 63L52.5 63.2L52.4 63.4L52.2 63.6L52 63.7L51.7 63.9L51.5 64L51.3 64.1L51 64.2L50.8 64.3L50.5 64.3L50.3 64.3L50 64.3L49.7 64.3L49.5 64.2L49.2 64.2L49 64.1L48.7 63.9L48.5 63.8L48.3 63.7L48.1 63.5L47.9 63.3L47.8 63.1L47.6 62.9L47.5 62.6L47.4 62.4L47.3 62.2L47.2 61.9L47.2 61.6L47.2 61.4L47.2 61.1L47.2 60.9L47.3 60.6L47.3 60.4L47.4 60.1L47.5 59.9L47.7 59.7L47.8 59.4L48 59.2L48.2 59.1L48.4 58.9L48.6 58.8L48.8 58.6L49.1 58.5L49.3 58.4L49.6 58.4Z"); stroke-opacity: 0; fill-opacity: 0; stroke-width: 3px; }
+  8%   { stroke-opacity: .9; }
+  45%  { d: path("M45.3 17.6L49.1 17.3L53 17.4L56.8 17.8L60.6 18.6L64.3 19.6L67.8 21L71.3 22.7L74.6 24.7L77.7 27L80.6 29.5L83.2 32.2L85.6 35.2L87.8 38.4L89.6 41.8L91.2 45.3L92.4 48.9L93.3 52.7L93.9 56.4L94.2 60.3L94.1 64.1L93.7 67.9L92.9 71.7L91.9 75.4L90.5 79L88.8 82.4L86.8 85.7L84.5 88.8L82 91.7L79.2 94.3L76.3 96.8L73.1 98.9L69.7 100.7L66.2 102.3L62.6 103.5L58.8 104.5L55 105L51.2 105.3L47.4 105.2L43.6 104.8L39.8 104.1L36.1 103L32.5 101.6L29.1 99.9L25.8 97.9L22.7 95.7L19.8 93.2L17.1 90.4L14.7 87.4L12.6 84.2L10.8 80.8L9.2 77.3L8 73.7L7 70L6.4 66.2L6.2 62.4L6.3 58.5L6.7 54.7L7.4 50.9L8.5 47.2L9.9 43.7L11.6 40.2L13.6 36.9L15.8 33.8L18.3 30.9L21.1 28.3L24.1 25.9L27.3 23.7L30.7 21.9L34.2 20.3L37.8 19.1L41.5 18.2Z"); stroke-opacity: .6; stroke-width: 1.5px; }
+  80%  { d: path("M45.2 16.6L48.6 18.8L52 21.1L55.5 23.4L59.3 24.9L62.9 26.6L65.1 30L68.2 32.3L72.1 33.5L76.1 33L80 31.8L83.6 33.4L87.3 35.4L91.1 36.9L95 38.2L96.5 40.7L95.3 44.7L94.5 48.7L93.8 52.7L93.2 56.8L91.9 60.6L89 63.5L86.1 66.4L83.1 69.2L80.1 72L77 74.7L73.1 76L69.2 77.1L65.2 78.3L61.3 79.4L57.9 81.6L55 84.5L52.3 87.5L51.1 91.4L49.9 95.4L47.8 98.9L45.4 102.2L43.4 105.7L42.2 109.3L39.4 106.2L36.7 103.1L32.9 101.6L28.9 100.8L24.8 100.8L23 97.4L22.7 93.6L24.1 89.7L26.1 86.2L29.3 83.6L30.6 79.7L31.4 75.8L30.9 71.7L28 73.7L24.9 76.2L21.6 73.8L18.2 71.5L14.7 69.3L16.3 65.7L17.7 62L16.7 58L17.1 54L18.4 50.1L20.5 46.6L22.8 43.1L25.3 39.9L27.3 36.5L27.8 32.4L29.9 28.9L32.2 25.5L35.1 22.9L39.1 21.9L42.3 19.5Z"); stroke-opacity: .9; fill-opacity: 0; }
+  100% { d: path("M45.2 16.6L48.6 18.8L52 21.1L55.5 23.4L59.3 24.9L62.9 26.6L65.1 30L68.2 32.3L72.1 33.5L76.1 33L80 31.8L83.6 33.4L87.3 35.4L91.1 36.9L95 38.2L96.5 40.7L95.3 44.7L94.5 48.7L93.8 52.7L93.2 56.8L91.9 60.6L89 63.5L86.1 66.4L83.1 69.2L80.1 72L77 74.7L73.1 76L69.2 77.1L65.2 78.3L61.3 79.4L57.9 81.6L55 84.5L52.3 87.5L51.1 91.4L49.9 95.4L47.8 98.9L45.4 102.2L43.4 105.7L42.2 109.3L39.4 106.2L36.7 103.1L32.9 101.6L28.9 100.8L24.8 100.8L23 97.4L22.7 93.6L24.1 89.7L26.1 86.2L29.3 83.6L30.6 79.7L31.4 75.8L30.9 71.7L28 73.7L24.9 76.2L21.6 73.8L18.2 71.5L14.7 69.3L16.3 65.7L17.7 62L16.7 58L17.1 54L18.4 50.1L20.5 46.6L22.8 43.1L25.3 39.9L27.3 36.5L27.8 32.4L29.9 28.9L32.2 25.5L35.1 22.9L39.1 21.9L42.3 19.5Z"); stroke-opacity: .6; fill-opacity: .14; stroke-width: 1.6px; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .product-eco:hover .eco-logo *,
+  .product-eco:focus-within .eco-logo * { animation: none !important; }
+  .product-eco:hover .eco-map,
+  .product-eco:focus-within .eco-map { stroke-opacity: .6; fill-opacity: .14; }
+}
+
+/* Logo de ÜBENPLAY: el hexágono lo dibuja el SVG para que el resplandor no quede recortado */
+.uben-logo {
+  --ub-time: 2.4s;
+  clip-path: none;
+  background: none;
+}
+.uben-logo svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 6px 10px rgba(31, 85, 99, .25));
+  transition: filter .35s ease, transform .35s ease;
+}
+.uben-logo .ub-dot { transform-box: fill-box; transform-origin: center; }
+.uben-logo .ub-spark { opacity: 0; stroke-dasharray: 0 200; }
+.uben-logo .ub-brain {
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+/* El trazo oculto queda lejos del inicio para que su extremo redondeado no asome como un punto */
+.uben-logo .ub-brain path { stroke-dasharray: 100 150; stroke-dashoffset: 120; }
+
+.product-uben:hover .uben-logo svg,
+.product-uben:focus-within .uben-logo svg {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 0 12px rgba(81, 148, 157, .6));
+}
+
+/* El brillo parte del play izquierdo, dibuja el cerebro y termina en el derecho;
+   el trazo queda como un rastro tenue mientras el cursor sigue encima */
+.product-uben:hover .uben-logo .ub-spark,
+.product-uben:focus-within .uben-logo .ub-spark { animation: ub-draw-spark var(--ub-time) linear .2s both; }
+.product-uben:hover .uben-logo .ub-brain,
+.product-uben:focus-within .uben-logo .ub-brain { opacity: 1; transition: none; }
+.product-uben:hover .uben-logo .ub-outline,
+.product-uben:focus-within .uben-logo .ub-outline {
+  /* Cada hemisferio se dibuja en su tramo del recorrido (--start y --dur: fracción del total) */
+  animation: ub-draw-outline calc(var(--dur) * var(--ub-time)) linear calc(.2s + var(--start) * var(--ub-time)) both;
+}
+/* Cada pliegue se dibuja cuando el brillo pasa por su zona (--at: avance sobre el contorno) */
+.product-uben:hover .uben-logo .ub-fold,
+.product-uben:focus-within .uben-logo .ub-fold { animation: ub-draw-brain .4s ease-out calc(.2s + var(--at) * var(--ub-time)) both; }
+.product-uben:hover .uben-logo .ub-dot-a,
+.product-uben:focus-within .uben-logo .ub-dot-a { animation: ub-pop .45s ease-out; }
+.product-uben:hover .uben-logo .ub-dot-b,
+.product-uben:focus-within .uben-logo .ub-dot-b { animation: ub-pop .5s ease-out calc(.15s + var(--ub-time)); }
+
+@keyframes ub-draw-spark {
+  0%   { opacity: 1; stroke-dasharray: 6 200; stroke-dashoffset: 6; }
+  94%  { opacity: 1; }
+  100% { opacity: 0; stroke-dasharray: 6 200; stroke-dashoffset: -94; }
+}
+/* El contorno es largo: con 101 basta para ocultar el extremo y así va al paso del brillo */
+@keyframes ub-draw-outline {
+  0%   { stroke-dashoffset: 101; stroke-opacity: .7; }
+  80%  { stroke-opacity: .7; }
+  100% { stroke-dashoffset: 0; stroke-opacity: .3; }
+}
+@keyframes ub-draw-brain {
+  0%   { stroke-dashoffset: 120; stroke-opacity: .7; }
+  80%  { stroke-opacity: .7; }
+  100% { stroke-dashoffset: 0; stroke-opacity: .3; }
+}
+@keyframes ub-pop {
+  0%, 100% { transform: scale(1); filter: none; }
+  45% { transform: scale(1.3); filter: drop-shadow(0 0 4px #FFE7A8) brightness(1.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uben-logo svg { transition: none; }
+  .product-uben:hover .uben-logo *,
+  .product-uben:focus-within .uben-logo * { animation: none !important; }
+  .product-uben:hover .uben-logo .ub-brain path,
+  .product-uben:focus-within .uben-logo .ub-brain path { stroke-dashoffset: 0; stroke-opacity: .3; }
+}
+
 .product h3 { font-size: 1.5rem; margin-bottom: 2px; }
 
 .product-tag {
@@ -590,23 +722,37 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
 .tab-panel p:first-child { font-size: 1.15rem; color: var(--ink); }
 .tab-panel p { color: var(--ink-soft); }
 
-.principles h3 { font-size: 1.25rem; margin-bottom: 18px; }
+.principles h3 { font-size: 1.25rem; margin-bottom: 8px; }
+.principles .principles-intro { color: var(--ink-soft); font-size: .95rem; margin: 0 0 18px; }
 
 .principles li {
-  position: relative;
-  padding: 0 0 18px 44px;
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
 }
-.principles li::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 2px;
-  width: 26px; height: 30px;
+.principles li:first-child { border-top: 0; padding-top: 4px; }
+
+.pr-ico {
+  flex-shrink: 0;
+  width: 40px; height: 46px;
   clip-path: var(--hex);
   background: var(--honey);
+  display: grid;
+  place-items: center;
 }
-.principles li:nth-child(even)::before { background: var(--teal); }
+.principles li:nth-child(even) .pr-ico { background: var(--teal); }
+.pr-ico svg,
+.ct-ico svg {
+  width: 20px; height: 20px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
-.principles h4 { font-size: 1.02rem; margin-bottom: 2px; }
+.principles h4 { font-size: 1.02rem; margin-bottom: 4px; }
 .principles p { margin: 0; color: var(--ink-soft); font-size: 1rem; }
 
 /* ---------- Contacto ---------- */
@@ -618,23 +764,31 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
 }
 
 .contact-info h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
-.contact-info > p { color: var(--ink-soft); max-width: 40ch; }
+.contact-info > p { color: var(--ink-soft); max-width: 52ch; }
 
-.contact-list { margin-top: 28px !important; display: grid; gap: 16px; }
+ul.contact-list {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 18px;
+}
 .contact-list li { display: flex; align-items: center; gap: 14px; }
-.contact-list a { font-weight: 600; text-decoration: none; word-break: break-word; }
+.contact-list strong { display: block; font-weight: 600; color: var(--ink); }
+.contact-list a { color: var(--teal); text-decoration: none; word-break: break-word; }
 .contact-list a:hover { text-decoration: underline; }
 
-.hex-ico {
+.ct-ico {
   flex-shrink: 0;
-  width: 40px; height: 46px;
+  width: 48px; height: 55px;
   clip-path: var(--hex);
   background: var(--ink);
-  color: var(--honey);
   display: grid;
   place-items: center;
-  font: 700 1rem var(--font-head);
 }
+.ct-ico svg { stroke: var(--honey); }
+
+.contact-note { margin-top: 22px; font-style: italic; font-size: .9rem; color: var(--ink-soft); }
 
 .contact-form {
   display: grid;
