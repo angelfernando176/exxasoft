@@ -15,7 +15,8 @@ exxasoft/
 │   ├── hexgrid.js        Malla hexagonal animada del fondo del inicio
 │   ├── services.js       Panal interactivo de servicios (onda, borde animado)
 │   ├── modals.js         Ventanas modales, pestañas Misión/Visión, ingreso "Mi cuenta"
-│   └── contact.js        Validación del formulario de contacto
+│   └── contact.js        Validación y envío del formulario de contacto
+├── server/               Servicio Node.js que envía el formulario por Zoho Mail
 ├── pages/
 │   ├── faq.html
 │   ├── privacidad.html
@@ -34,7 +35,7 @@ Abre `index.html` en cualquier navegador. No requiere instalación.
 
 - **Redes sociales:** reemplaza los enlaces de Facebook, X y LinkedIn en el pie (`index.html` y `pages/*.html`) por las URL reales de la empresa.
 - **Mi cuenta:** el formulario valida los datos, pero el inicio de sesión real necesita un servidor. Conéctalo en la función `authenticate()` de `js/modals.js`.
-- **Formulario de contacto:** hoy abre el correo del visitante con el mensaje redactado. Para enviarlo desde el servidor, reemplaza el bloque `mailto` en `js/contact.js`.
+- **Formulario de contacto:** se envía al servicio de `server/` (Node.js + Zoho Mail). Sigue `server/README.md` para obtener las credenciales de Zoho y desplegarlo en DigitalOcean.
 - **Textos legales:** son una base de referencia. Revísalos con un asesor legal.
 - **Logo:** `img/logo.svg` es provisional; reemplázalo cuando tengas el definitivo.
 

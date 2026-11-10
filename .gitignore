@@ -12,5 +12,6 @@ desktop.ini
 node_modules/
 dist/
 
-# Variables de entorno
+# Variables de entorno (credenciales de Zoho)
 .env
+server/.env

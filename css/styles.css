@@ -948,6 +948,32 @@ textarea:focus {
 .check { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
 .check input { width: 18px; height: 18px; accent-color: var(--teal); }
 
+.link-btn {
+  border: 0;
+  background: none;
+  color: var(--teal);
+  font-weight: 600;
+  font-size: .95rem;
+  padding: 0;
+  cursor: pointer;
+}
+.link-btn:hover { color: var(--ink); text-decoration: underline; }
+
+.forgot-panel[hidden],
+.reset-panel[hidden] { display: none; }
+.forgot-panel,
+.reset-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+.forgot-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.forgot-actions .btn { flex: 1 1 auto; }
+
 .field-legend { font-weight: 600; font-size: .95rem; }
 
 .product-select { display: flex; gap: 8px; }

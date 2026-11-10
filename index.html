@@ -418,6 +418,7 @@
       <img src="img/logo.svg" alt="" width="48" height="48">
       <h2 id="login-title">Ingresa a tu cuenta</h2>
       <p class="modal-sub">Acceso para clientes con suscripción.</p>
+      <div class="login-fields" id="login-fields">
       <div class="field">
         <span class="field-legend">Producto</span>
         <div class="product-select" role="radiogroup" aria-label="Producto">
@@ -444,10 +445,36 @@
       </div>
       <div class="login-row">
         <label class="check"><input type="checkbox" id="lg-remember"> Recordarme</label>
-        <a href="mailto:fernando.escobar@exxasoft.com?subject=Recuperar%20contrase%C3%B1a">¿Olvidaste tu contraseña?</a>
+        <button class="link-btn" type="button" id="lg-forgot">¿Olvidaste tu contraseña?</button>
+      </div>
+      <div class="forgot-panel" id="forgot-panel" hidden>
+        <p class="field-legend">Se enviará un correo a: <strong id="forgot-email"></strong></p>
+        <p class="form-status" id="forgot-status" role="status"></p>
+        <div class="forgot-actions">
+          <button class="btn btn-primary" type="button" id="forgot-confirm">Confirmar</button>
+          <button class="link-btn" type="button" id="forgot-cancel">Cancelar</button>
+        </div>
       </div>
       <p class="form-status" id="lg-status" role="status"></p>
       <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
+      </div>
+      <div class="reset-panel" id="reset-panel" hidden>
+        <p class="field-legend">Tienes un código de restablecimiento pendiente para <strong id="reset-email"></strong>. Ingrésalo junto con tu nueva contraseña.</p>
+        <div class="field">
+          <label for="reset-code">Código recibido por correo</label>
+          <input id="reset-code" type="text" maxlength="8" autocomplete="one-time-code">
+        </div>
+        <div class="field">
+          <label for="reset-pass">Nueva contraseña</label>
+          <input id="reset-pass" type="password" minlength="6" autocomplete="new-password">
+        </div>
+        <div class="field">
+          <label for="reset-pass-confirm">Confirmar nueva contraseña</label>
+          <input id="reset-pass-confirm" type="password" minlength="6" autocomplete="new-password">
+        </div>
+        <p class="form-status" id="reset-status" role="status"></p>
+        <button class="btn btn-primary btn-block" type="button" id="reset-confirm">Guardar nueva contraseña</button>
+      </div>
       <p class="modal-foot">¿Aún no tienes suscripción? <a href="#contacto" data-close>Contáctanos</a></p>
     </form>
   </dialog>

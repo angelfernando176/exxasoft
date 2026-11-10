@@ -117,6 +117,22 @@
     });
   }
 
+  var resetBase = loginForm ? (loginForm.getAttribute("data-reset-base") || "/api/reset") : "/api/reset";
+
+  /*
+   * El backend siempre responde 200 y solo envía el código de reseteo cuando hay
+   * una cuenta real detrás. Evita exponer qué correos están registrados (enumeración de usuarios).
+   */
+  function requestEcoPasswordReset(email) {
+    return fetch(resetBase + "/solicitar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email })
+    }).then(function (res) {
+      if (!res.ok) throw new Error("reset-failed");
+    });
+  }
+
   /*
    * Punto de conexión con el servidor de cuentas.
    * Übenplay aún no tiene backend: reemplaza esta rama por una llamada real cuando exista, por ejemplo:
@@ -127,6 +143,128 @@
   function authenticate(email, password, product) {
     if (product === "eco") return authenticateEco(email, password);
     return Promise.reject(new Error("pending-backend"));
+  }
+
+  /* ---------- Olvidé mi contraseña ---------- */
+  var forgotLink = document.getElementById("lg-forgot");
+  var forgotPanel = document.getElementById("forgot-panel");
+  var forgotEmailEl = document.getElementById("forgot-email");
+  var forgotStatus = document.getElementById("forgot-status");
+  var forgotConfirm = document.getElementById("forgot-confirm");
+  var forgotCancel = document.getElementById("forgot-cancel");
+
+  function setForgotStatus(msg, ok) {
+    forgotStatus.textContent = msg;
+    forgotStatus.className = "form-status " + (ok ? "is-ok" : "is-error");
+  }
+
+  if (forgotLink && forgotPanel) {
+    forgotLink.addEventListener("click", function () {
+      var email = document.getElementById("lg-email");
+      if (!EMAIL_RE.test(email.value.trim())) {
+        email.setAttribute("aria-invalid", "true");
+        setStatus("Escribe tu correo arriba antes de recuperar la contraseña.", false);
+        email.focus();
+        return;
+      }
+      forgotEmailEl.textContent = email.value.trim();
+      setForgotStatus("", true);
+      forgotPanel.hidden = false;
+    });
+  }
+
+  if (forgotCancel && forgotPanel) {
+    forgotCancel.addEventListener("click", function () {
+      forgotPanel.hidden = true;
+      setForgotStatus("", true);
+    });
+  }
+
+  /* ---------- Restablecer contraseña (código pendiente) ---------- */
+  var loginFields = document.getElementById("login-fields");
+  var resetPanel = document.getElementById("reset-panel");
+  var resetEmailEl = document.getElementById("reset-email");
+  var resetCodeEl = document.getElementById("reset-code");
+  var resetPassEl = document.getElementById("reset-pass");
+  var resetPassConfirmEl = document.getElementById("reset-pass-confirm");
+  var resetStatus = document.getElementById("reset-status");
+  var resetConfirm = document.getElementById("reset-confirm");
+
+  function setResetStatus(msg, ok) {
+    resetStatus.textContent = msg;
+    resetStatus.className = "form-status " + (ok ? "is-ok" : "is-error");
+  }
+
+  if (resetConfirm && resetPanel) {
+    resetConfirm.addEventListener("click", function () {
+      var email = resetEmailEl.textContent;
+      var code = resetCodeEl.value.trim();
+      var newPassword = resetPassEl.value;
+      var newPasswordConfirm = resetPassConfirmEl.value;
+
+      if (code.length !== 8) {
+        setResetStatus("El código debe tener 8 caracteres.", false);
+        resetCodeEl.focus();
+        return;
+      }
+      if (newPassword.length < 6) {
+        setResetStatus("La nueva contraseña debe tener al menos 6 caracteres.", false);
+        resetPassEl.focus();
+        return;
+      }
+      if (newPassword !== newPasswordConfirm) {
+        setResetStatus("Las contraseñas no coinciden.", false);
+        resetPassConfirmEl.focus();
+        return;
+      }
+
+      setResetStatus("Guardando…", true);
+      fetch(resetBase + "/confirmar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          code: code,
+          newPassword: newPassword,
+          newPasswordConfirm: newPasswordConfirm
+        })
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          if (!res.ok) throw new Error((data && data.error) || "reset-failed");
+        });
+      }).then(function () {
+        setResetStatus("Contraseña actualizada. Ingresa de nuevo con tu nueva contraseña.", true);
+        resetCodeEl.value = "";
+        resetPassEl.value = "";
+        resetPassConfirmEl.value = "";
+        resetPanel.hidden = true;
+        if (loginFields) loginFields.hidden = false;
+      }).catch(function (err) {
+        setResetStatus(err && err.message ? err.message : "No pudimos actualizar la contraseña. Intenta de nuevo.", false);
+      });
+    });
+  }
+
+  if (forgotConfirm && forgotPanel) {
+    forgotConfirm.addEventListener("click", function () {
+      var productInput = loginForm.querySelector('input[name="lg-product"]:checked');
+      var product = productInput ? productInput.value : "ubenplay";
+      var email = forgotEmailEl.textContent;
+
+      if (product !== "eco") {
+        setForgotStatus("El portal de clientes aún no está habilitado. Escríbenos a fernando.escobar@exxasoft.com para acceder.", false);
+        return;
+      }
+
+      setForgotStatus("Enviando…", true);
+      requestEcoPasswordReset(email)
+        .then(function () {
+          setForgotStatus("Si el correo está registrado, recibirás un código para restablecer tu contraseña.", true);
+        })
+        .catch(function () {
+          setForgotStatus("No pudimos enviar el correo. Intenta de nuevo en unos minutos.", false);
+        });
+    });
   }
 
   if (loginForm) {
@@ -152,17 +290,42 @@
       }
 
       setStatus("Verificando…", true);
-      authenticate(email.value.trim(), pass.value, product)
-        .then(function () {
-          setStatus("Ingreso correcto. Redirigiendo…", true);
-        })
-        .catch(function () {
-          if (product === "eco") {
-            setStatus("Correo o contraseña incorrectos.", false);
-          } else {
-            setStatus("El portal de clientes aún no está habilitado. Escríbenos a fernando.escobar@exxasoft.com para acceder.", false);
-          }
-        });
+
+      var trimmedEmail = email.value.trim();
+
+      function doLogin() {
+        authenticate(trimmedEmail, pass.value, product)
+          .then(function () {
+            setStatus("Ingreso correcto. Redirigiendo…", true);
+          })
+          .catch(function () {
+            if (product === "eco") {
+              setStatus("Correo o contraseña incorrectos.", false);
+            } else {
+              setStatus("El portal de clientes aún no está habilitado. Escríbenos a fernando.escobar@exxasoft.com para acceder.", false);
+            }
+          });
+      }
+
+      if (product === "eco") {
+        fetch(resetBase + "/estado?email=" + encodeURIComponent(trimmedEmail))
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data && data.pending) {
+              if (loginFields) loginFields.hidden = true;
+              if (resetPanel) resetPanel.hidden = false;
+              if (resetEmailEl) resetEmailEl.textContent = trimmedEmail;
+              setResetStatus("", true);
+              return;
+            }
+            doLogin();
+          })
+          .catch(function () {
+            doLogin();
+          });
+      } else {
+        doLogin();
+      }
     });
   }
 })();
