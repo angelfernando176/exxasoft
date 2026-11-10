@@ -840,6 +840,11 @@ textarea:focus {
 .form-status.is-error { color: var(--danger); }
 .form-status.is-ok { color: var(--ok); }
 
+/* Campo trampa contra bots: fuera de la vista, sin ocupar espacio en la grilla */
+.hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+.btn[aria-busy="true"] { opacity: .7; cursor: progress; }
+
 /* ---------- Pie de página ---------- */
 .site-footer { background: var(--ink); color: #C9D4DF; }
 
@@ -942,6 +947,26 @@ textarea:focus {
 }
 .check { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
 .check input { width: 18px; height: 18px; accent-color: var(--teal); }
+
+.field-legend { font-weight: 600; font-size: .95rem; }
+
+.product-select { display: flex; gap: 8px; }
+.product-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: .9rem;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.product-option input { position: absolute; opacity: 0; width: 0; height: 0; }
+.product-option:has(input:checked) { border-color: var(--teal); background: color-mix(in srgb, var(--teal) 10%, transparent); }
+.product-option:has(input:focus-visible) { outline: 2px solid var(--teal); outline-offset: 2px; }
 
 .modal-foot { margin: 0; text-align: center; font-size: .95rem; color: var(--ink-soft); }
 

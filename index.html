@@ -347,7 +347,7 @@
           <p class="contact-note">Tu idea es el punto de partida. Nosotros te ayudamos a convertirla en una solución tecnológica.</p>
         </div>
 
-        <form class="contact-form" id="contact-form" novalidate>
+        <form class="contact-form" id="contact-form" data-endpoint="/api/contacto" novalidate>
           <div class="field">
             <label for="cf-name">Nombre</label>
             <input id="cf-name" name="name" type="text" autocomplete="name" required>
@@ -371,6 +371,11 @@
           <div class="field field-full">
             <label for="cf-msg">Mensaje</label>
             <textarea id="cf-msg" name="message" rows="4" required></textarea>
+          </div>
+          <!-- Campo trampa contra bots: las personas no lo ven ni lo llenan -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="cf-website">Sitio web</label>
+            <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
           </div>
           <p class="form-status" id="cf-status" role="status"></p>
           <button class="btn btn-primary" type="submit">Enviar mensaje</button>
@@ -413,6 +418,19 @@
       <img src="img/logo.svg" alt="" width="48" height="48">
       <h2 id="login-title">Ingresa a tu cuenta</h2>
       <p class="modal-sub">Acceso para clientes con suscripción.</p>
+      <div class="field">
+        <span class="field-legend">Producto</span>
+        <div class="product-select" role="radiogroup" aria-label="Producto">
+          <label class="product-option">
+            <input type="radio" name="lg-product" value="ubenplay" checked>
+            <span>ÜBENPLAY</span>
+          </label>
+          <label class="product-option">
+            <input type="radio" name="lg-product" value="eco">
+            <span>Eco</span>
+          </label>
+        </div>
+      </div>
       <div class="field">
         <label for="lg-email">Correo electrónico</label>
         <input id="lg-email" type="email" autocomplete="username" required>

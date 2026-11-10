@@ -95,19 +95,37 @@
   var loginStatus = document.getElementById("lg-status");
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+  /* Proyecto Supabase de Eco; el anon/publishable key es seguro en cliente (RLS en el backend). */
+  var ECO_SUPABASE_URL = "https://jtrrqbnxhxxqjcpizjuy.supabase.co";
+  var ECO_SUPABASE_ANON_KEY = "sb_publishable_snBSbyTIkIU8_qQdsw_SpQ_6p5UDuxS";
+
   function setStatus(msg, ok) {
     loginStatus.textContent = msg;
     loginStatus.className = "form-status " + (ok ? "is-ok" : "is-error");
   }
 
+  function authenticateEco(email, password) {
+    return fetch(ECO_SUPABASE_URL + "/auth/v1/token?grant_type=password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "apikey": ECO_SUPABASE_ANON_KEY },
+      body: JSON.stringify({ email: email, password: password })
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok) throw new Error((data && (data.error_description || data.msg)) || "invalid-credentials");
+        return data;
+      });
+    });
+  }
+
   /*
    * Punto de conexión con el servidor de cuentas.
-   * Reemplaza el cuerpo de esta función por una llamada real, por ejemplo:
+   * Übenplay aún no tiene backend: reemplaza esta rama por una llamada real cuando exista, por ejemplo:
    *   return fetch("/api/login", { method: "POST", headers: {"Content-Type": "application/json"},
    *                                body: JSON.stringify({ email: email, password: password }) });
    * Nunca guardes contraseñas en el navegador ni las valides solo en JavaScript.
    */
-  function authenticate(email, password) {
+  function authenticate(email, password, product) {
+    if (product === "eco") return authenticateEco(email, password);
     return Promise.reject(new Error("pending-backend"));
   }
 
@@ -116,6 +134,8 @@
       e.preventDefault();
       var email = document.getElementById("lg-email");
       var pass = document.getElementById("lg-pass");
+      var productInput = loginForm.querySelector('input[name="lg-product"]:checked');
+      var product = productInput ? productInput.value : "ubenplay";
 
       email.setAttribute("aria-invalid", String(!EMAIL_RE.test(email.value.trim())));
       pass.setAttribute("aria-invalid", String(pass.value.length < 6));
@@ -132,12 +152,16 @@
       }
 
       setStatus("Verificando…", true);
-      authenticate(email.value.trim(), pass.value)
+      authenticate(email.value.trim(), pass.value, product)
         .then(function () {
           setStatus("Ingreso correcto. Redirigiendo…", true);
         })
         .catch(function () {
-          setStatus("El portal de clientes aún no está habilitado. Escríbenos a fernando.escobar@exxasoft.com para acceder.", false);
+          if (product === "eco") {
+            setStatus("Correo o contraseña incorrectos.", false);
+          } else {
+            setStatus("El portal de clientes aún no está habilitado. Escríbenos a fernando.escobar@exxasoft.com para acceder.", false);
+          }
         });
     });
   }
