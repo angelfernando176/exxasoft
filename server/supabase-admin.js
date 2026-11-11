@@ -22,6 +22,10 @@ class SupabaseAdmin {
       "Authorization": "Bearer " + this.serviceRoleKey,
       "Content-Type": "application/json"
     }, (init && init.headers) || {});
+    if (path.startsWith("/rest/v1/")) {
+      headers["Accept-Profile"] = "eco";
+      headers["Content-Profile"] = "eco";
+    }
     let res;
     try {
       res = await this.fetch(this.url + path, Object.assign({ signal: AbortSignal.timeout(15000) }, init, { headers: headers }));
