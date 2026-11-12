@@ -205,7 +205,9 @@ function createServer(opts) {
       res.setHeader("Vary", "Origin");
     }
     const url = new URL(req.url || "/", "http://localhost");
-    const path = url.pathname;
+    // App Platform's ingress may forward the path with the "/api" prefix kept,
+    // stripped, or duplicated depending on routing config; normalize to exactly one.
+    const path = url.pathname.replace(/^(\/api)+/, "/api").replace(/^(?!\/api)/, "/api");
     const resetPaths = ["/api/reset/solicitar", "/api/reset/estado", "/api/reset/confirmar"];
 
     if (req.method === "OPTIONS" && (path === "/api/contacto" || resetPaths.includes(path))) {
