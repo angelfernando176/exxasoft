@@ -413,70 +413,17 @@
 
   <!-- ===== Ventanas modales ===== -->
   <dialog class="modal" id="dlg-login" aria-labelledby="login-title">
-    <form class="modal-box login-form" id="login-form" method="dialog" novalidate>
+    <div class="modal-box login-form" id="login-form">
       <button class="modal-close" type="button" data-close aria-label="Cerrar">×</button>
       <img src="img/logo.svg" alt="" width="48" height="48">
-      <h2 id="login-title">Ingresa a tu cuenta</h2>
-      <p class="modal-sub">Acceso para clientes con suscripción.</p>
-      <div class="login-fields" id="login-fields">
-      <div class="field">
-        <span class="field-legend">Producto</span>
-        <div class="product-select" role="radiogroup" aria-label="Producto">
-          <label class="product-option">
-            <input type="radio" name="lg-product" value="ubenplay" checked>
-            <span>ÜBENPLAY</span>
-          </label>
-          <label class="product-option">
-            <input type="radio" name="lg-product" value="eco">
-            <span>Eco</span>
-          </label>
-        </div>
-      </div>
-      <div class="field">
-        <label for="lg-email">Correo electrónico</label>
-        <input id="lg-email" type="email" autocomplete="username" required>
-      </div>
-      <div class="field">
-        <label for="lg-pass">Contraseña</label>
-        <div class="pass-wrap">
-          <input id="lg-pass" type="password" autocomplete="current-password" minlength="6" required>
-          <button class="pass-toggle" type="button" aria-label="Mostrar contraseña" aria-pressed="false">Ver</button>
-        </div>
-      </div>
-      <div class="login-row">
-        <label class="check"><input type="checkbox" id="lg-remember"> Recordarme</label>
-        <button class="link-btn" type="button" id="lg-forgot">¿Olvidaste tu contraseña?</button>
-      </div>
-      <div class="forgot-panel" id="forgot-panel" hidden>
-        <p class="field-legend">Se enviará un correo a: <strong id="forgot-email"></strong></p>
-        <p class="form-status" id="forgot-status" role="status"></p>
-        <div class="forgot-actions">
-          <button class="btn btn-primary" type="button" id="forgot-confirm">Confirmar</button>
-          <button class="link-btn" type="button" id="forgot-cancel">Cancelar</button>
-        </div>
+      <h2 id="login-title">Mi cuenta</h2>
+      <p class="modal-sub">Elegí tu producto para ingresar.</p>
+      <div class="product-select product-select-links" role="group" aria-label="Producto">
+        <a class="btn btn-primary btn-block" href="https://eco.exxasoft.com">Eco</a>
+        <button class="btn btn-primary btn-block" type="button" id="lg-uben-soon">ÜBENPLAY</button>
       </div>
       <p class="form-status" id="lg-status" role="status"></p>
-      <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
-      </div>
-      <div class="reset-panel" id="reset-panel" hidden>
-        <p class="field-legend">Tienes un código de restablecimiento pendiente para <strong id="reset-email"></strong>. Ingrésalo junto con tu nueva contraseña.</p>
-        <div class="field">
-          <label for="reset-code">Código recibido por correo</label>
-          <input id="reset-code" type="text" maxlength="8" autocomplete="one-time-code">
-        </div>
-        <div class="field">
-          <label for="reset-pass">Nueva contraseña</label>
-          <input id="reset-pass" type="password" minlength="6" autocomplete="new-password">
-        </div>
-        <div class="field">
-          <label for="reset-pass-confirm">Confirmar nueva contraseña</label>
-          <input id="reset-pass-confirm" type="password" minlength="6" autocomplete="new-password">
-        </div>
-        <p class="form-status" id="reset-status" role="status"></p>
-        <button class="btn btn-primary btn-block" type="button" id="reset-confirm">Guardar nueva contraseña</button>
-      </div>
-      <p class="modal-foot">¿Aún no tienes suscripción? <a href="#contacto" data-close>Contáctanos</a></p>
-    </form>
+    </div>
   </dialog>
 
   <dialog class="modal" id="dlg-eco" aria-labelledby="eco-title">

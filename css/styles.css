@@ -924,77 +924,10 @@ textarea:focus {
 .login-form h2 { font-size: 1.5rem; margin: 0; }
 .modal-sub { margin: -10px 0 4px; color: var(--ink-soft); }
 
-.pass-wrap { position: relative; }
-.pass-wrap input { padding-right: 64px; }
-.pass-toggle {
-  position: absolute;
-  right: 6px; top: 50%;
-  transform: translateY(-50%);
-  border: 0;
-  background: none;
-  color: var(--teal);
-  font-weight: 600;
-  padding: 8px 10px;
-  cursor: pointer;
-}
-
-.login-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: .95rem;
-}
-.check { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
-.check input { width: 18px; height: 18px; accent-color: var(--teal); }
-
-.link-btn {
-  border: 0;
-  background: none;
-  color: var(--teal);
-  font-weight: 600;
-  font-size: .95rem;
-  padding: 0;
-  cursor: pointer;
-}
-.link-btn:hover { color: var(--ink); text-decoration: underline; }
-
-.forgot-panel[hidden],
-.reset-panel[hidden] { display: none; }
-.forgot-panel,
-.reset-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--paper);
-}
-.forgot-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-.forgot-actions .btn { flex: 1 1 auto; }
-
 .field-legend { font-weight: 600; font-size: .95rem; }
 
 .product-select { display: flex; gap: 8px; }
-.product-option {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: .9rem;
-  cursor: pointer;
-  transition: border-color .15s, background .15s;
-}
-.product-option input { position: absolute; opacity: 0; width: 0; height: 0; }
-.product-option:has(input:checked) { border-color: var(--teal); background: color-mix(in srgb, var(--teal) 10%, transparent); }
-.product-option:has(input:focus-visible) { outline: 2px solid var(--teal); outline-offset: 2px; }
-
-.modal-foot { margin: 0; text-align: center; font-size: .95rem; color: var(--ink-soft); }
+.product-select-links { flex-direction: column; }
 
 .modal-product {
   --accent: var(--teal);
