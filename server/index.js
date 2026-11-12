@@ -205,14 +205,12 @@ function createServer(opts) {
       res.setHeader("Vary", "Origin");
     }
     const url = new URL(req.url || "/", "http://localhost");
-    // App Platform's ingress may forward the path with the "/api" prefix kept,
-    // stripped, or duplicated depending on routing config; normalize to exactly one.
-    const path = url.pathname.replace(/^(\/api)+/, "/api").replace(/^(?!\/api)/, "/api");
+    // App Platform's ingress strips the "/api/" prefix (including the slash) and
+    // re-prepends "/api" without restoring it, e.g. "/api/contacto" arrives here
+    // as "/apicontacto"; reinsert the missing slash so routes below can match.
+    const rest = url.pathname.replace(/^\/api/, "");
+    const path = "/api" + (rest.startsWith("/") || rest === "" ? rest : "/" + rest);
     const resetPaths = ["/api/reset/solicitar", "/api/reset/estado", "/api/reset/confirmar"];
-
-    if (url.pathname.endsWith("__debug")) {
-      return send(res, 200, { rawUrl: req.url, pathname: url.pathname, normalized: path });
-    }
 
     if (req.method === "OPTIONS" && (path === "/api/contacto" || resetPaths.includes(path))) {
       res.setHeader("Access-Control-Allow-Methods", path === "/api/reset/estado" ? "GET" : "POST");
