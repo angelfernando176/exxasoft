@@ -210,6 +210,10 @@ function createServer(opts) {
     const path = url.pathname.replace(/^(\/api)+/, "/api").replace(/^(?!\/api)/, "/api");
     const resetPaths = ["/api/reset/solicitar", "/api/reset/estado", "/api/reset/confirmar"];
 
+    if (url.pathname.endsWith("__debug")) {
+      return send(res, 200, { rawUrl: req.url, pathname: url.pathname, normalized: path });
+    }
+
     if (req.method === "OPTIONS" && (path === "/api/contacto" || resetPaths.includes(path))) {
       res.setHeader("Access-Control-Allow-Methods", path === "/api/reset/estado" ? "GET" : "POST");
       res.setHeader("Access-Control-Allow-Headers", "Content-Type");
